@@ -1,0 +1,56 @@
+{
+    "name": "tobento/service-session",
+    "type": "library",
+    "description": "Session support for PHP applications.",
+    "keywords": [
+        "tobento",
+        "package",
+        "session",
+        "session flash"
+	],
+    "homepage": "https://www.tobento.ch",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tobias Strub",
+            "email": "info@tobento.ch",
+            "homepage": "https://www.tobento.ch"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.0",
+        "tobento/service-collection": "^1.0"
+    },
+    "suggest": {
+        "psr/http-message": "Required for using session middleware",
+        "psr/http-server-handler": "Required for using session middleware",
+        "psr/http-server-middleware": "Required for using session middleware"        
+    },    
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "vimeo/psalm": "^4.0",
+        "psr/http-message": "^1.0",
+        "psr/http-server-handler": "^1.0",
+        "psr/http-server-middleware": "^1.0",
+        "tobento/service-middleware": "^1.0",
+        "tobento/service-container": "^1.0",
+        "nyholm/psr7": "^1.4",
+        "nyholm/psr7-server": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tobento\\Service\\Session\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tobento\\Service\\Session\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit --testdox --colors=always",
+        "psalm": "vendor/bin/psalm"
+    }
+}
