@@ -50,7 +50,12 @@ class Session implements SessionInterface
     /**
      * @var array<string, bool>
      */
-    protected array $onceKeys = [];    
+    protected array $onceKeys = [];
+    
+    /**
+     * @var bool
+     */
+    protected bool $isClosed = false;
     
     /**
      * Create a new Session.
@@ -136,6 +141,12 @@ class Session implements SessionInterface
     public function save(): static
     {
         $this->flashing();
+        
+        if ($this->isClosed) {
+            return $this;
+        }
+        
+        $this->isClosed = true;
         
         if (
             session_write_close() === false
