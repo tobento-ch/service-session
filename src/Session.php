@@ -127,6 +127,7 @@ class Session implements SessionInterface
             );
         }
         
+        $this->isClosed = false;
         $this->startSession($this->name);
         
         return $this;
@@ -140,12 +141,11 @@ class Session implements SessionInterface
      */    
     public function save(): static
     {
-        $this->flashing();
-        
         if ($this->isClosed) {
             return $this;
         }
         
+        $this->flashing();
         $this->isClosed = true;
         
         if (
