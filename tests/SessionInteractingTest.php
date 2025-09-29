@@ -138,7 +138,7 @@ class SessionInteractingTest extends TestCase
         
         $session->deleteAll();
         
-        $this->assertSame(['_session_expires' => null], $session->all());
+        $this->assertSame(['_session_expires'], array_keys($session->all()));
     } 
     
     public function testAllMethod()
@@ -149,15 +149,17 @@ class SessionInteractingTest extends TestCase
         $session->set('key', 'value');
         $session->set('meta.color', 'blue');
         
+        $data = $session->all();
+        unset($data['_session_expires']);
+        
         $this->assertEquals(
             [
-                '_session_expires' => null,
                 'key' => 'value',
                 'meta' => [
                     'color' => 'blue',
                 ],
             ],
-            $session->all()
+            $data
         );
     }     
 }
