@@ -113,7 +113,6 @@ class Session implements SessionInterface
     /**
      * Starts the session.
      *
-     * @param string $name A session name.
      * @return static $this
      * @throws SessionStartException
      * @throws SessionExpiredException
