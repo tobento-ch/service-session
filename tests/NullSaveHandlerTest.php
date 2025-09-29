@@ -46,9 +46,7 @@ class NullSaveHandlerTest extends TestCase
 
     public function testGcMethod()
     {        
-        $this->assertTrue(
-            (new NullSaveHandler())->gc(5)
-        );        
+        $this->assertSame(0, (new NullSaveHandler())->gc(5));
     }
     
     public function testOpenMethod()
