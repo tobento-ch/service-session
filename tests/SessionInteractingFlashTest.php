@@ -42,17 +42,17 @@ class SessionInteractingFlashTest extends TestCase
     {
         $session = $this->createSession();
         
-        $this->assertSame(
-            $session,
-            $session->flash('key', 'value')
-        );
-        
         // current request
         try {
             $session->start();
         } catch (SessionStartException $e) {
             //
         }
+        
+        $this->assertSame(
+            $session,
+            $session->flash('key', 'value')
+        );
         
         $this->assertSame('value', $session->get('key'));
         
@@ -97,17 +97,17 @@ class SessionInteractingFlashTest extends TestCase
     {
         $session = $this->createSession();
         
-        $this->assertSame(
-            $session,
-            $session->now('key', 'value')
-        );
-        
         // current request
         try {
             $session->start();
         } catch (SessionStartException $e) {
             //
         }
+        
+        $this->assertSame(
+            $session,
+            $session->now('key', 'value')
+        );
         
         $this->assertSame('value', $session->get('key'));
         
