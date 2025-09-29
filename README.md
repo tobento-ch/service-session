@@ -36,7 +36,7 @@ composer require tobento/service-session
 
 ## Requirements
 
-- PHP 8.0 or greater
+- PHP 8.4 or greater
 
 ## Highlights
 
@@ -457,7 +457,7 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 
 // create middleware dispatcher.
 $dispatcher = new MiddlewareDispatcher(
-    new FallbackHandler((new Psr17Factory())->createResponse(404)),
+    new FallbackHandler(new Psr17Factory()->createResponse(404)),
     new AutowiringMiddlewareFactory(new Container()) // any PSR-11 container
 );
 
@@ -495,7 +495,7 @@ $dispatcher->add(function(ServerRequestInterface $request, RequestHandlerInterfa
     return $handler->handle($request);
 });
 
-$request = (new Psr17Factory())->createServerRequest('GET', 'https://example.com');
+$request = new Psr17Factory()->createServerRequest('GET', 'https://example.com');
 
 $response = $dispatcher->handle($request);
 ```
