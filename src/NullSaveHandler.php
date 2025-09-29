@@ -50,15 +50,14 @@ class NullSaveHandler implements SaveHandlerInterface
      * based on session.gc_divisor, session.gc_probability and
      * session.gc_maxlifetime settings.
      *
-     * @param int $maxlifetime
+     * @param int $max_lifetime
      * @return int|false Returns the number of deleted sessions on success.
-     *
      * @psalm-suppress all
      */
     #[ReturnTypeWillChange]
-    public function gc(int $maxlifetime)
+    public function gc(int $max_lifetime)
     {
-        return true;
+        return 0;
     }
     
     /**

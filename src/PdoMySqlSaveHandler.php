@@ -81,15 +81,15 @@ class PdoMySqlSaveHandler implements SaveHandlerInterface, ExistenceAwareInterfa
      * based on session.gc_divisor, session.gc_probability and
      * session.gc_maxlifetime settings.
      *
-     * @param int $maxlifetime
+     * @param int $max_lifetime
      * @return int|false Returns the number of deleted sessions on success.
      *
      * @psalm-suppress all
      */
     #[ReturnTypeWillChange]
-    public function gc(int $maxlifetime)
+    public function gc(int $max_lifetime)
     {
-        $past = time() - $maxlifetime;
+        $past = time() - $max_lifetime;
         
         $statement = $this->pdo->prepare(
             'DELETE FROM '.$this->backtickValue($this->table).' WHERE expiry <= ?'
@@ -97,7 +97,7 @@ class PdoMySqlSaveHandler implements SaveHandlerInterface, ExistenceAwareInterfa
         
         $statement->execute([$past]);
 
-        return true;
+        return $statement->rowCount();
     }
     
     /**
